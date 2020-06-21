@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+  <title>Gym Beings!</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+
+    <!--Data Tables-->
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
+
+    <script>
+        $(document).ready(function() {
+    $('#example').DataTable( {
+        dom: 'Bfrtip',
+        buttons: [
+            'copyHtml5',
+            'excelHtml5',
+            'csvHtml5',
+            'pdfHtml5'
+        ]
+    } );
+} );
+    </script>
+
+</head>
+
+<nav class="navbar navbar-expand-sm bg-secondary navbar-dark">
+    <a class="navbar-brand" href="">Gym</a>
+    <button class ="navbar-toggler" type ="button" data-toggle="collapse" data-target="#abc">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class ="collapse navbar-collapse" id="abc">
+        <ul class="navbar-nav mx-auto">
+            {% if not request.user.is_authenticated %}
+            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">HOME</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'about' %}">ABOUT US</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'services' %}">OUR SERVICE</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">MEMBERSHIP-PLANS</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'contact' %}">CONTACT US</a></li>
+            <li class="nav-item"><a class="nav-link" href="{% url 'signin' %}">LOGIN</a></li>
+            {% endif %}
+
+            {% if request.user.is_authenticated %}
+
+            <li class="nav-item"><a class="nav-link" href="{% url 'home' %}">Home</a></li>
+
+            <li class="nav-item"><a class="nav-link" href="{% url 'recd_enq' %}">Check Enquiry</a></li>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="">Plan</a>
+            <div class = "dropdown-menu">
+                <a class = "dropdown-item" href="{% url 'add_plan' %}">Add Plan</a>
+                <a class = "dropdown-item" href="{% url 'membership_plan' %}">View Plans</a>
+            </div>
+            </li>
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Enquipment</a>
+            <div class = "dropdown-menu">
+                <a class = "dropdown-item" href="{% url 'add_equip' %}">Add Enquipment</a>
+                <a class = "dropdown-item" href="{% url 'recd_equip' %}">View Enquipments</a>
+            </div>
+            </li>
+
+
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">Members</a>
+            <div class = "dropdown-menu">
+                <a class = "dropdown-item" href="{% url 'add_member' %}">Add Member</a>
+                <a class = "dropdown-item" href="{% url 'recd_member' %}">Members Information</a>
+            </div>
+            </li>
+
+            <li class="nav-item"><a class="nav-link" href="{% url 'signout' %}">Logout</a></li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+</html>
+
+{% block content %}
+
+{% endblock content %}

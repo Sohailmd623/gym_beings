@@ -1,0 +1,32 @@
+{% extends 'gym/base.html' %}
+{% block content %}
+
+<div class = "container" style="margin-top:60px">
+    <h2 class="text-center text-warning font-italics">Check Enquiry Details</h2>
+<table id = "example" class="table table-hover">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Unit</th>
+        <th>Date</th>
+        <th>Description</th>
+        <th>Remove</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for e in equip %}
+    <tr>
+        <td>{{ e.name }}</td>
+        <td>{{ e.price }}</td>
+        <td>{{ e.unit }}</td>
+        <td>{{ e.date }}</td>
+        <td>{{ e.description }}</td>
+        <td><a class= "btn btn-danger" href = "{% url 'delete_equip' e.id %}" onclick="Return Confirm('Are You sure?')">Delete</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+
+{% endblock %}

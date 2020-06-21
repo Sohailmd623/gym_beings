@@ -1,0 +1,28 @@
+{% extends 'gym/base.html' %}
+{% block content %}
+
+<div class = "container" style="margin-top:60px">
+    <h2 class="text-center text-warning font-italics">View Plan</h2>
+<table id = "example" class="table table-hover">
+    <thead>
+    <tr>
+        <th>Plan Name</th>
+        <th>Amount</th>
+        <th>Duration</th>
+        <th>Remove</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for p in plan %}
+    <tr>
+        <td>{{ p.name }}</td>
+        <td>{{ p.amount }}</td>
+        <td>{{ p.duration }}</td>
+        <td><a class= "btn btn-danger" href = "{% url 'delete_plan' p.id %}" onclick="Return Confirm('Are You sure?')">Delete</a></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+</div>
+
+{% endblock %}

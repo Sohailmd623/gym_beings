@@ -1,0 +1,49 @@
+{% extends 'gym/base.html' %}
+
+{% block content %}
+<div class="container" style="margin-top:60px">
+    <h2 class="text-center text-center">Add Enquiry</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label><h5>Full Name :</h5></label>
+        <input type = "text" name = "name" class= "form-control" required>
+        <br>
+        <label><h5>Contact :</h5></label>
+        <input type = "text" name = "contact" class = "form-control" required>
+        <br>
+        <label><h5>Email :</h5></label>
+        <input type = "text" name= "email" class = "form-control" required>
+        <br>
+        <label><h5>Specify Your Gender :</h5></label>
+        <br>
+        <input type = "radio" name = "gender" value="male"><br>Male</br><br>
+        <input type = "radio" name = "gender" value="female"><br>Female</br>
+        <br>
+        <label><h5>Age :</h5></label>
+        <input type = "text" name = "age" class = "form-control" required>
+        <br>
+
+        <label><h5>What would you like you enquire about?</h5></label>
+        <input type = "text" name = "description" class = "form-control">
+        <br>
+        <input type = "submit" value = "Submit" class = "form-control btn btn-secondary">
+    </form>
+</div>
+
+
+{% ifequal error "no" %}
+<script>
+    alert('Your Enquiry is placed Successfully!');
+    window.location = ('{% url 'home' %}');
+</script>
+{% endifequal %}
+
+
+{% ifequal error "yes" %}
+<script>
+    alert('Oops, Something went Wrong. Please Try Again!');
+</script>
+{% endifequal %}
+
+{% endblock %}

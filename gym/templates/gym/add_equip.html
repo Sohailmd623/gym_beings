@@ -1,0 +1,43 @@
+{% extends 'gym/base.html' %}
+
+{% block content %}
+<div class="container" style="margin-top:60px">
+    <h2 class="text-center text-center">Add New Equipment</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <label><h5>Equipment Name :</h5></label>
+        <input type = "text" name = "name" class= "form-control" required>
+        <br>
+        <label><h5>Price :</h5></label>
+        <input type = "text" name = "price" class = "form-control" required>
+        <br>
+        <label><h5>Unit :</h5></label>
+        <input type = "text" name= "unit" class = "form-control" required>
+        <br>
+        <label><h5>Purchase Date :</h5></label>
+        <input type = "date" name = "date" class = "form-control" required>
+        <br>
+        <label><h5>Description :</h5></label>
+        <input type = "text" name = "description" class = "form-control">
+        <br>
+        <input type = "submit" value = "Add Equipment" class = "form-control btn btn-secondary">
+    </form>
+</div>
+
+
+{% ifequal error "no" %}
+<script>
+    alert('New Equipment Has Been Added Successfully!');
+    window.location = ('{% url 'home' %}');
+</script>
+{% endifequal %}
+
+
+{% ifequal error "yes" %}
+<script>
+    alert('Oops, Something went Wrong. Please Try Again!');
+</script>
+{% endifequal %}
+
+{% endblock %}
